@@ -2,30 +2,27 @@ var speed = 3.0;
 var jumpSpeed = 50.0;
 var grounded = true;
 var rotateSpeed : float = 3.0;
+var gravity : float = 20.0f;
+private var moveDirection:Vector3 = Vector3.zero;
 function Update () 
 {
 	var controller : CharacterController = GetComponent(CharacterController);
-    transform.Rotate(0, Input.GetAxis ("Horizontal") * rotateSpeed, 0);
-    var forward : Vector3 = transform.TransformDirection(Vector3.forward);
-    var curSpeed : float = speed * Input.GetAxis ("Vertical");
-    controller.SimpleMove(forward * curSpeed);
-   
-	
-	if(Input.GetButtonDown("Jump"))
-	{
-		var jump :Vector3 = transform.TransformDirection(Vector3.up * jumpSpeed * Time.deltaTime);
-	}
+	if(controller.isGrounded){	
+    	transform.Rotate(0, Input.GetAxis ("Horizontal") * rotateSpeed, 0);
+    	moveDirection = Vector3(0, 0,Input.GetAxis("Vertical"));
+   		moveDirection = transform.TransformDirection(moveDirection);
+	    moveDirection *= speed;
+            
+    if (Input.GetButton ("Jump")){
+               moveDirection.y = jumpSpeed;
+            }
+        }
+        // Apply gravity
+        moveDirection.y -= gravity * Time.deltaTime;
+        
+        // Move the controller
+        controller.Move(moveDirection * Time.deltaTime);
 }
-
-function Jump ()
-{
-	if(grounded == true)
-	{
-	rigidbody.AddForce(Vector3.up * jumpSpeed);
-	grounded = false;
-	}
-}
-
 function OnCollisionEnter(hit : Collision)
 {
 	grounded = true;
