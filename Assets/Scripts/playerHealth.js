@@ -11,7 +11,7 @@ function Update () {
 }
 
 function OnGUI(){
-GUI.Box(new Rect(10,10,healthbarLenth,20), currentHealth + " / " + maxHealth);
+GUI.Box(new Rect(10,10,healthbarLenth,20), "Health: " + currentHealth + " / " + maxHealth);
 
 }
 
