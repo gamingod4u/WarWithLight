@@ -1,12 +1,12 @@
 #pragma strict
-var theLight: GameObject;
+var theCamera: GameObject;
 var randomOff:int;
 var randomOn:int;
 var canGetLights:boolean;
 var intialStart:boolean;
 
 function Start () {
-theLight.light.enabled = true;
+
 canGetLights = false;
 intialStart = true;
 }
@@ -16,7 +16,7 @@ if (intialStart){
 intialStart = false;
 StartCoroutine("InitialStart");
 }
-if(theLight.light.enabled && canGetLights){
+if(theCamera.camera.enabled && canGetLights){
 	GetLights(Random.Range(10,25));
 	canGetLights = false;
 	}	
@@ -26,7 +26,7 @@ function GetLights(delay:float){
 
 
 		var timer = Time.time + delay;
-		theLight.light.enabled = false;
+		theCamera.camera.enabled = false;
 		
 		while (timer > Time.time){
 		yield;
@@ -36,7 +36,7 @@ function GetLights(delay:float){
 }
 
 function GetLightsOn(){
-theLight.light.enabled = true;
+theCamera.camera.enabled = true;
 randomOn = Random.Range(10,25);
 yield WaitForSeconds(randomOn);
 canGetLights = true;
