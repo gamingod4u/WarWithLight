@@ -1,5 +1,5 @@
 #pragma strict
-var player:GameObject;
+var player:Transform;
 var moveSpeed: int = 4;
 var rotSpeed: int  = 3;
 var maxDistance:int;
@@ -12,7 +12,8 @@ function Awake () {
 }
 
 function Start () {
-
+var go : GameObject = GameObject.FindGameObjectWithTag("Player");
+	player = go.transform;
   maxDistance = 5;
   attackDistance = 3;
 }
