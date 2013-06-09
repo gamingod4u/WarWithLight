@@ -1,14 +1,13 @@
 #pragma strict
 var target:GameObject;
-var rod: GameObject;
 var attackTimer:float;
 var coolDown:float;
-var showTimer:int;
 var cool:boolean = false;
-
+var showTimer: int;
+var theCamera: Camera;
 function Start () {
 attackTimer = 0;
-coolDown = 5.0;
+coolDown = 3;
 
 }
 
@@ -21,7 +20,7 @@ function Update () {
 	attackTimer = 0;
 	}
 	
-	if(Input.GetAxis("Fire2")&&attackTimer==0){
+		if(attackTimer == 0  && theCamera.enabled == true){
 		Attack();
 		if(cool){
 	 		attackTimer =  coolDown;
@@ -30,22 +29,19 @@ function Update () {
 	}
 	showTimer = parseInt(attackTimer);
 }
-function OnGUI(){
-GUI.Label(new Rect(100,50,100,20), "Cool Down: " + showTimer.ToString());
 
 
-}
+
 function Attack(){
 var distance:float = Vector3.Distance(target.transform.position,transform.position);
 
 var dir : Vector3 = (target.transform.position - transform.position).normalized;
 var direction: float = Vector3.Dot(dir, transform.forward);
-if(direction < 2.5f && distance > 5 && distance < 10){
- 	if(direction > 0){
- 	var flame: flameAmmoCount = GameObject.Find("Rod").GetComponent(flameAmmoCount)as flameAmmoCount;
+if(direction < 2.5f && distance > 0 && distance < 3){
+ 	if(direction >0){ 
  	cool = true;
- 	flame.AddjustCurrentHealth(-1);
- 	print("fireAttack");
+ 	print(distance);
+ 	print("Enemy1Attack");
  		}
  	}
 }

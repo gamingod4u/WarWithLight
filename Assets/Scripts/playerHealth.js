@@ -3,7 +3,7 @@ var maxHealth: int = 100;
 var currentHealth: int = 100;
 var healthbarLenth:float;
 function Start () {
-healthbarLenth = Screen.width/2;
+
 }
 
 function Update () {
@@ -11,7 +11,7 @@ function Update () {
 }
 
 function OnGUI(){
-GUI.Box(new Rect(10,10,healthbarLenth,20), "Health: " + currentHealth + " / " + maxHealth);
+GUI.Label(new Rect(10,10,100,20), "Health: " + currentHealth.ToString() + " / " + maxHealth.ToString());
 
 }
 
@@ -27,5 +27,5 @@ currentHealth = maxHealth;
 if(maxHealth < 1){
 maxHealth = 1;
 	}
-	healthbarLenth = ((Screen.width/2) * (currentHealth/maxHealth));
+
 }

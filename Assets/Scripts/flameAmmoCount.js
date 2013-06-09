@@ -3,7 +3,7 @@ var maxFlameHealth: int = 20;
 static var currentFlameHealth: int = 20;
 var healthbarLenth3:float;
 function Start () {
-healthbarLenth3 = Screen.width/2;
+
 }
 
 function Update () {
@@ -11,7 +11,7 @@ function Update () {
 }
 
 function OnGUI(){
-GUI.Box(new Rect(10,60,healthbarLenth3,20), "Ammo: " + currentFlameHealth + " / " + maxFlameHealth);
+GUI.Label(new Rect(10,50,100,20), "Ammo: " + currentFlameHealth.ToString() + " / " + maxFlameHealth.ToString());
 
 }
 
@@ -27,5 +27,4 @@ currentFlameHealth = maxFlameHealth;
 if(maxFlameHealth < 1){
 maxFlameHealth = 1;
 	}
- 	healthbarLenth3 = ((Screen.width/2) * (currentFlameHealth/maxFlameHealth));
-}
+} 	

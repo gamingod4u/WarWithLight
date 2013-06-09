@@ -3,7 +3,7 @@ var maxSwordHealth: int = 20;
 var currentSwordHealth: int = 20;
 var healthbarLenth:float;
 function Start () {
-healthbarLenth = Screen.width/2;
+
 }
 
 function Update () {
@@ -11,7 +11,7 @@ function Update () {
 }
 
 function OnGUI(){
-GUI.Box(new Rect(10,35,healthbarLenth,20), "Power: " + currentSwordHealth + " / " + maxSwordHealth);
+GUI.Label(new Rect(10,30,100,20), "Power: " + currentSwordHealth.ToString() + " / " + maxSwordHealth.ToString());
 
 }
 
@@ -27,5 +27,5 @@ currentSwordHealth = maxSwordHealth;
 if(maxSwordHealth < 1){
 maxSwordHealth = 1;
 	}
-	healthbarLenth = ((Screen.width/2) * (currentSwordHealth/maxSwordHealth));
+	
 }
